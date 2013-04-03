@@ -13,8 +13,32 @@
 		}
 	</style>
 	<link rel="icon" type="image/png" href="img/icon.png">
+	<script type="text/javascript" src="http://sketch.evanyou.me/matrix/src/mx.js"></script>
 </head>
 <body>
-	<div id="logo"><img src="img/logo.jpg" /></div>
+	<div id="logo"><img id="image-logo" src="img/logo.jpg" /></div>
+	<script type="text/javascript">
+		function init () {
+
+			MX.rotationUnit = 'deg'
+			//MX.positionAtCenter = false
+
+			var obj = new MX.Object3D(document.getElementById('logo'))
+			var increment = 0.1
+
+			function animate () {
+                requestAnimationFrame(animate)
+                    obj.rotationX += increment
+                    obj.rotationY += increment
+                    obj.rotationZ += increment
+                    if (Math.abs(obj.rotationX) > 5) increment *= -1
+                    obj.update()
+            }
+
+            animate()
+        }
+
+        init()
+	</script>
 </body>
 </html>
